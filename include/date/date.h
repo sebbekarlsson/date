@@ -1,5 +1,8 @@
 #ifndef DATE_DATE_H
 #define DATE_DATE_H
+#ifdef __cplusplus
+extern "C" {
+#endif
 #include <stdint.h>
 #include <sys/time.h>
 #include <time.h>
@@ -20,4 +23,7 @@ Date date_now();
 Date date_diff(Date *a, Date *b);
 
 void date_format(Date *date, char **str);
+#ifdef __cplusplus
+}
+#endif
 #endif
