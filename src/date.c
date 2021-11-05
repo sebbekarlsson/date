@@ -39,6 +39,17 @@ Date date_diff(Date *a, Date *b) {
                  year, timestamp});
 }
 
+void date_copy(Date* dest, Date* src) {
+  dest->day = src->day;
+  dest->hour = src->hour;
+  dest->microseconds = src->microseconds;
+  dest->milliseconds = src->milliseconds;
+  dest->minute = src->minute;
+  dest->month = src->month;
+  dest->seconds = src->seconds;
+  dest->timestamp = src->timestamp;
+}
+
 void date_format(Date *date, char **str) {
   char *buffer = *str;
   const char *templ = "(%d) %d/%d/%d %d:%d:%d:%1.2f";

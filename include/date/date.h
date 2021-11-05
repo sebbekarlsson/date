@@ -22,6 +22,8 @@ Date date_now();
 
 Date date_diff(Date *a, Date *b);
 
+void date_copy(Date* dest, Date* src);
+
 void date_format(Date *date, char **str);
 #ifdef __cplusplus
 }
