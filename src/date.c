@@ -12,6 +12,7 @@ Date date_now() {
 
   double microseconds = start.tv_usec;
   double milliseconds = microseconds * 0.001f;
+  double milliseconds_static = t * 1000;
   uint32_t timestamp = (uint32_t)start.tv_sec;
   uint32_t year = tm.tm_year + 1900;
   uint8_t month = tm.tm_mon + 1;
@@ -20,13 +21,14 @@ Date date_now() {
   uint8_t minute = tm.tm_min;
   double seconds = tm.tm_sec;
 
-  return ((Date){seconds, milliseconds, microseconds, hour, minute, day, month,
+  return ((Date){seconds, milliseconds, milliseconds_static, microseconds, hour, minute, day, month,
                  year, timestamp});
 }
 
 Date date_diff(Date *a, Date *b) {
   double microseconds = a->microseconds - b->microseconds;
   double milliseconds = a->milliseconds - b->milliseconds;
+  double milliseconds_static = a->milliseconds_static - b->milliseconds_static;
   uint32_t timestamp = a->timestamp - b->timestamp;
   uint32_t year = a->year - b->year;
   uint8_t month = a->month - b->month;
@@ -35,7 +37,7 @@ Date date_diff(Date *a, Date *b) {
   uint8_t minute = a->minute - b->minute;
   double seconds = a->seconds - b->seconds;
 
-  return ((Date){seconds, milliseconds, microseconds, hour, minute, day, month,
+  return ((Date){seconds, milliseconds, milliseconds_static, microseconds, hour, minute, day, month,
                  year, timestamp});
 }
 
@@ -44,6 +46,7 @@ void date_copy(Date* dest, Date* src) {
   dest->hour = src->hour;
   dest->microseconds = src->microseconds;
   dest->milliseconds = src->milliseconds;
+  dest->milliseconds_static = src->milliseconds_static;
   dest->minute = src->minute;
   dest->month = src->month;
   dest->seconds = src->seconds;

@@ -9,6 +9,7 @@ extern "C" {
 typedef struct {
   double seconds;
   double milliseconds;
+  double milliseconds_static;
   double microseconds;
   uint8_t hour;
   uint8_t minute;
