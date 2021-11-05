@@ -10,9 +10,12 @@ Date date_now() {
   time_t t = time(NULL);
   struct tm tm = *localtime(&t);
 
+
+  long cur_time = 1000000 * start.tv_sec + start.tv_usec;
+  double milliseconds_static = (cur_time / 1000000.0) * 10000;
+
   double microseconds = start.tv_usec;
   double milliseconds = microseconds * 0.001f;
-  double milliseconds_static = t * 1000;
   uint32_t timestamp = (uint32_t)start.tv_sec;
   uint32_t year = tm.tm_year + 1900;
   uint8_t month = tm.tm_mon + 1;

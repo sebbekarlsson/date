@@ -8,6 +8,8 @@ int main(int argc, char *argv[]) {
 
   Date date2 = date_now();
 
+  for (int i = 0; i < 10000; i++) { printf("\r"); }
+
   Date diff = date_diff(&date2, &date);
 
   char *str = 0;
@@ -16,6 +18,8 @@ int main(int argc, char *argv[]) {
   if (str) {
     printf("%s\n", str);
   }
+
+  printf("%12.6f\n", diff.milliseconds_static);
 
   return 0;
 }
