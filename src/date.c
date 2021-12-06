@@ -11,8 +11,8 @@ Date date_now() {
   struct tm tm = *localtime(&t);
 
 
-  long cur_time = 1000000 * start.tv_sec + start.tv_usec;
-  double milliseconds_static = (cur_time / 1000000.0) * 10000;
+  long usec = start.tv_usec;
+  double milliseconds_static = usec;
 
   double microseconds = start.tv_usec;
   double milliseconds = microseconds * 0.001f;
@@ -31,7 +31,7 @@ Date date_now() {
 Date date_diff(Date *a, Date *b) {
   double microseconds = a->microseconds - b->microseconds;
   double milliseconds = a->milliseconds - b->milliseconds;
-  double milliseconds_static = a->milliseconds_static - b->milliseconds_static;
+  double milliseconds_static = (double)(a->milliseconds_static - b->milliseconds_static) / 1000000 + (double)(a->timestamp - b->timestamp);
   uint32_t timestamp = a->timestamp - b->timestamp;
   uint32_t year = a->year - b->year;
   uint8_t month = a->month - b->month;
