@@ -23,7 +23,8 @@ int main(int argc, char *argv[]) {
     printf("%s\n", str);
   }
 
-  printf("%12.6f\n", diff.milliseconds_static);
+  printf("Milliseconds: %12.6f\n", diff.milliseconds_static);
+  printf("Seconds: %12.6f\n", diff.seconds);
 
   return 0;
 }

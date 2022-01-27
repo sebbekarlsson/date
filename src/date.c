@@ -31,14 +31,14 @@ Date date_now() {
 Date date_diff(Date *a, Date *b) {
   double microseconds = a->microseconds - b->microseconds;
   double milliseconds = a->milliseconds - b->milliseconds;
-  double milliseconds_static = (double)(a->milliseconds_static - b->milliseconds_static) / 1000000 + (double)(a->timestamp - b->timestamp);
+  double milliseconds_static = ((double)(a->milliseconds_static - b->milliseconds_static) / 1000000 + (double)(a->timestamp - b->timestamp)) * 1000.0f;
   uint32_t timestamp = a->timestamp - b->timestamp;
   uint32_t year = a->year - b->year;
   uint8_t month = a->month - b->month;
   uint8_t day = a->day - b->day;
   uint8_t hour = a->hour - b->hour;
   uint8_t minute = a->minute - b->minute;
-  double seconds = a->seconds - b->seconds;
+  double seconds = milliseconds_static / 1000.0f;//a->seconds - b->seconds;
 
   return ((Date){seconds, milliseconds, milliseconds_static, microseconds, hour, minute, day, month,
                  year, timestamp});
